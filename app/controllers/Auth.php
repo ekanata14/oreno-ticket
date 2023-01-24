@@ -1,19 +1,23 @@
 <?php
 
-class Auth extends Controller{
-    public function index(){
+class Auth extends Controller
+{
+    public function index()
+    {
         $this->view("templates/header");
         $this->view("auth/login");
         $this->view("templates/footer");
     }
 
-    public function register(){
+    public function register()
+    {
         $this->view("templates/header");
         $this->view("auth/register");
         $this->view("templates/footer");
     }
 
-    public function regisPenumpang(){
+    public function regisPenumpang()
+    {
         $data = [
             'username' => $_POST['username'],
             'password' => $_POST['password'],
@@ -23,28 +27,34 @@ class Auth extends Controller{
             'jenis_kelamin' => $_POST['jenis_kelamin'],
             'telefon' => $_POST['telefon'],
         ];
-        
-        if($this->model("Auth_model")->addPenumpang($data) > 0){
+
+        if ($this->model("Auth_model")->addPenumpang($data) > 0) {
             header("Location: " . BASE_URL . "/auth");
-        } else{
+        } else {
             header("Location: " . BASE_URL . "/auth/register");
         }
     }
 
-    public function loginPenumpang(){
+    public function loginPenumpang()
+    {
         $data = [
             'username' => $_POST['username'],
             'password' => $_POST['password']
         ];
 
-        if($this->model("Auth_model")->loginPenumpang($data)){
-            header("Location: " . BASE_URL . "/home");
-        } else{
-            header("Location: " . BASE_URL . "/home");
+        if ($data['username'] == "admin" && $data['password'] == "admin") {
+            header("Location: " . BASE_URL . "/admin");
+        } else {
+            if ($this->model("Auth_model")->loginPenumpang($data) > 0) {
+                header("Location: " . BASE_URL . "/home");
+            } else {
+                header("Location: " . BASE_URL . "/auth");
+            }
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         session_destroy();
         session_unset();
         header("Location: " . BASE_URL . "/auth/login");
