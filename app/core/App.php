@@ -1,8 +1,9 @@
 <?php
 
-class App{
+class App
+{
     public function __construct()
     {
-        echo "Hello World from Construct";
+        var_dump($_GET['url']);
     }
 }
