@@ -178,7 +178,7 @@ CREATE TABLE `type_transportasi` (
   `id_type_transportasi` int NOT NULL,
   `nama_type` varchar(255) DEFAULT NULL,
   `keterangan` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `type_transportasi`
