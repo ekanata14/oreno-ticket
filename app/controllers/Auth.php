@@ -17,39 +17,22 @@ class Auth extends Controller
     }
 
     public function regisPenumpang()
-    {
-        $data = [
-            'username' => $_POST['username'],
-            'password' => $_POST['password'],
-            'nama_penumpang' => $_POST['nama_penumpang'],
-            'alamat_penumpang' => $_POST['alamat_penumpang'],
-            'tanggal_lahir' => $_POST['tanggal_lahir'],
-            'jenis_kelamin' => $_POST['jenis_kelamin'],
-            'telefon' => $_POST['telefon'],
-        ];
-
-        if ($this->model("Auth_model")->addPenumpang($data) > 0) {
-            header("Location: " . BASE_URL . "/auth");
+    { 
+        if ($this->model("User_model")->addPenumpang($_POST) > 0) {
+            Redirect::to("auth");
         } else {
-            header("Location: " . BASE_URL . "/auth/register");
+            Redirect::to("auth/register");
         }
     }
 
-    public function loginPenumpang()
+    public function login()
     {
-        $data = [
-            'username' => $_POST['username'],
-            'password' => $_POST['password']
-        ];
-
-        if ($data['username'] == "admin" && $data['password'] == "admin") {
-            header("Location: " . BASE_URL . "/admin");
-        } else {
-            if ($this->model("Auth_model")->loginPenumpang($data) > 0) {
-                header("Location: " . BASE_URL . "/home");
-            } else {
-                header("Location: " . BASE_URL . "/auth");
-            }
+        if ($this->model("User_model")->loginPetugas($_POST) > 0){
+            Redirect::to("admin");
+        } else if($this->model("User_model")->loginPenumpang($_POST) > 0){
+            Redirect::to("home");
+        } else{
+            Redirect::to("auth");
         }
     }
 
@@ -57,6 +40,6 @@ class Auth extends Controller
     {
         session_destroy();
         session_unset();
-        header("Location: " . BASE_URL . "/auth/login");
+        Redirect::to("auth");
     }
 }

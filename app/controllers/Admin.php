@@ -11,7 +11,7 @@ class Admin extends Controller
 
     public function penumpang()
     {
-        $data['penumpang'] = $this->model("Penumpang_model")->getAllPenumpang();
+        $data['penumpang'] = $this->model("User_model")->getAllPenumpang();
         $this->view("templates/header");
         $this->view("admin/penumpang", $data);
         $this->view("templates/footer");
