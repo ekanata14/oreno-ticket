@@ -37,11 +37,11 @@
                             <input type="text" class="form-control form-control-user" name="telefon"
                                 placeholder="Telefon" id="telefon">
                         </div>
-                        <div class="form-group">
-                            <label for="Laki-Laki">Laki-Laki</label>
-                            <input type="radio" class="form-control form-control-user" name="jenis_kelamin" value="Laki-Laki" id="jenisKelaminLK">
-                            <label for="Perempuan">Perempuan</label>
-                            <input type="radio" class="form-control form-control-user" name="jenis_kelamin" value="Perempuan" id="jenisKelaminPR">
+                        <div class="form-group d-flex align-items-center justify-content-center gap-2">
+                            <label for="Laki-Laki" class="mr-3">Laki-Laki</label>
+                            <input type="radio" class="mr-5" name="jenis_kelamin" value="Laki-Laki" id="jenisKelaminLK">
+                            <label for="Perempuan" class="mr-3">Perempuan</label>
+                            <input type="radio" class="" name="jenis_kelamin" value="Perempuan" id="jenisKelaminPR">
                         </div>
                         <div class="form-group">
                         </div>
