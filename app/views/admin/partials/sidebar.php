@@ -13,7 +13,7 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item <?= ($addition['title'] == "Dashboard") ? 'active' : ''?>">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Dashboard</span></a>
@@ -27,18 +27,33 @@
                 Menus
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - User Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers"
                     aria-expanded="true" aria-controls="collapseUsers">
                     <i class="fas fa-fw fa-users"></i>
                     <span>User Management</span>
                 </a>
-                <div id="collapseUsers" class="collapse" aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+                <div id="collapseUsers" class="collapse <?= ($addition['show'] == 'menu_1') ? 'show' : ''?> " aria-labelledby="headingUsers" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                        <a class="collapse-item" href="<?= BASE_URL?>/admin/operator">Operator</a>
-                        <a class="collapse-item" href="<?= BASE_URL?>/admin/users">Users</a>
+                        <a class="collapse-item <?= ($addition['title'] == 'Dashboard | Operators') ? 'active' : ''?>" href="<?= BASE_URL?>/admin/operator">Operator</a>
+                        <a class="collapse-item <?= ($addition['title'] == 'Dashboard | Users') ? 'active' : ''?>" href="<?= BASE_URL?>/admin/users">Users</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - User Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTickets"
+                    aria-expanded="true" aria-controls="collapseUsers">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Ticket</span>
+                </a>
+                <div id="collapseTickets" class="collapse <?= ($addition['show'] == 'menu_2') ? 'show' : ''?> " aria-labelledby="headingUsers" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+                        <a class="collapse-item <?= ($addition['title'] == 'Dashboard | Tickets') ? 'active' : ''?>" href="<?= BASE_URL?>/admin/ticket">Ticket Order</a> 
                     </div>
                 </div>
             </li>

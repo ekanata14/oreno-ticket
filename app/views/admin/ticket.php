@@ -20,12 +20,11 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                     <?php require_once("partials/dashCard.php");?>
+                    <?php require_once("partials/dashCard.php");?>
         <!-- Main Content -->
-
-        <div class="card border-0 p-2">
-            <h1>Today's Orders</h1>
-            <table class="table">
+        <div class="card border-0 p-2 col-12 mb-3">
+            <h1 class="mb-3">Tickets</h1>
+           <table class="table">
                 <thead>
                     <th>No</th>
                     <th>Order Code</th>
@@ -42,10 +41,10 @@
                     <th>Operator ID</th>
                     <th>Status</th>
                     <th>Action</th>
-                </thead>
+                </thead>                               
                 <tbody>
                     <?php $i = 1?>
-                    <?php foreach($data['todayOrders'] as $ticket):?>
+                    <?php foreach($data['orders'] as $ticket):?>
                         <tr>
                             <td><?= $i ?></td>
                             <td><?= $ticket['id']?></td>
@@ -105,10 +104,11 @@
                 </tfoot>
             </table>
         </div>
+
+        <?php require_once("partials/footer.php");?>
         </div>
         <!-- End of Content Wrapper -->
 
-        <?php require_once("partials/footer.php");?>
     </div>
     <!-- End of Page Wrapper -->
 
@@ -117,5 +117,86 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
+    <!-- Add Modal-->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Add</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= BASE_URL ?>/admin/editOperator" method="POST">
+                        <div class="form-group">
+                            <label for="username">Username</label> 
+                            <input type="text" name="username" id="username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label> 
+                            <input type="text" name="operatorName" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label> 
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="level">Level</label>
+                            <select name="level" id="level" class="form-control">
+                                <option value="1">Admin</option>
+                                <option value="2">Operator</option>
+                            </select> 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="<?= BASE_URL ?>/admin/editOperator">
+                            <input type="hidden" name="id" id="operatorId">
+                        <div class="form-group">
+                            <label for="username">Username</label> 
+                            <input type="text" name="username" id="operatorUsername" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label> 
+                            <input type="text" name="name" id="operatorName" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="level">Level</label>
+                            <select name="level" id="operatorLevel" class="form-control">
+                                <option value="1">Admin</option>
+                                <option value="2">Operator</option>
+                            </select> 
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Edit</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php require_once("partials/modals.php");?>    
+
+
 

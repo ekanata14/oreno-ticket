@@ -20,12 +20,11 @@
 
                     <!-- Content Row -->
                     <div class="row">
-                     <?php require_once("partials/dashCard.php");?>
+                <?php require_once("partials/dashCard.php");?>
         <!-- Main Content -->
-
-        <div class="card border-0 p-2">
-            <h1>Today's Orders</h1>
-            <table class="table">
+        <div class="card border-0 p-2 col-12 mb-3">
+            <h1 class="mb-3">Tickets</h1>
+           <table class="table">
                 <thead>
                     <th>No</th>
                     <th>Order Code</th>
@@ -42,28 +41,30 @@
                     <th>Operator ID</th>
                     <th>Status</th>
                     <th>Action</th>
-                </thead>
+                </thead>                               
                 <tbody>
-                    <?php $i = 1?>
-                    <?php foreach($data['todayOrders'] as $ticket):?>
+                    <?php
+
+                    $i = 1;
+                    $ticketData = $addition['ticketData'];
+                    ?>
                         <tr>
                             <td><?= $i ?></td>
-                            <td><?= $ticket['id']?></td>
-                            <td><?= $ticket['kode_pemesanan']?></td>
-                            <td><?= $ticket['tanggal_pemesanan']?></td>
-                            <td><?= $ticket['tempat_pemesanan']?></td>
-                            <td><?= $ticket['id_pelanggan']?></td>
-                            <td><?= $ticket['kode_kursi']?></td>
-                            <td><?= $ticket['id_rute']?></td>
-                            <td><?= $ticket['tujuan']?></td>
-                            <td><?= $ticket['tanggal_berangkat']?></td>
-                            <td><?= $ticket['jam_cekin']?></td>
-                            <td><?= $ticket['jam_berangkat']?></td>
-                            <td><?= $ticket['total_bayar']?></td>
-                            <td><?= $ticket['id_petugas']?></td>
+                            <td><?= $ticketData['kode_pemesanan']?></td>
+                            <td><?= $ticketData['tanggal_pemesanan']?></td>
+                            <td><?= $ticketData['tempat_pemesanan']?></td>
+                            <td><?= $ticketData['id_pelanggan']?></td>
+                            <td><?= $ticketData['kode_kursi']?></td>
+                            <td><?= $ticketData['id_rute']?></td>
+                            <td><?= $ticketData['tujuan']?></td>
+                            <td><?= $ticketData['tanggal_berangkat']?></td>
+                            <td><?= $ticketData['jam_cekin']?></td>
+                            <td><?= $ticketData['jam_berangkat']?></td>
+                            <td><?= $ticketData['total_bayar']?></td>
+                            <td><?= $ticketData['id_petugas']?></td>
                             <td>  
                                <?php
-                                switch($ticket['status']){
+                                switch($ticketData['status']){
                                    case 0:
                                        echo "<span class='text-danger'>Pending</span>";
                                        break;
@@ -83,32 +84,14 @@
                                 </form>
                             </td>
                         </tr>
-                        <?php $i++?>
-                    <?php endforeach?>
                 </tbody>
-                <tfoot>
-                     <th>No</th>
-                    <th>Order Code</th>
-                    <th>Order Date</th>
-                    <th>Order Place</th>
-                    <th>User ID</th>
-                    <th>Chair Code</th>
-                    <th>Route ID</th>
-                    <th>Destination</th>
-                    <th>Departure Date</th>
-                    <th>Check In Time</th>
-                    <th>Departure Time</th>
-                    <th>Payment Total</th>
-                    <th>Operator ID</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tfoot>
             </table>
         </div>
+
+        <?php require_once("partials/footer.php");?>
         </div>
         <!-- End of Content Wrapper -->
 
-        <?php require_once("partials/footer.php");?>
     </div>
     <!-- End of Page Wrapper -->
 
@@ -118,4 +101,6 @@
     </a>
 
     <?php require_once("partials/modals.php");?>    
+
+
 
