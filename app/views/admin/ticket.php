@@ -47,7 +47,6 @@
                     <?php foreach($data['orders'] as $ticket):?>
                         <tr>
                             <td><?= $i ?></td>
-                            <td><?= $ticket['id']?></td>
                             <td><?= $ticket['kode_pemesanan']?></td>
                             <td><?= $ticket['tanggal_pemesanan']?></td>
                             <td><?= $ticket['tempat_pemesanan']?></td>
@@ -67,19 +66,23 @@
                                        echo "<span class='text-danger'>Pending</span>";
                                        break;
                                    case 1:
-                                       echo "<span class='text-warning'>Process</span>";
-                                       break;
-                                   case 2:
-                                       echo "<span class='text-success'>Done</span>";
+                                       echo "<span class='text-success'>Accepted</span>";
                                        break;
                                 } 
                                ?> 
                             </td>
                             <td>
-                                <form action="<?= BASE_URL ?>/admin/ticketDetail" method="POST">
+                                <?php if($ticket['status'] == '0'){?> 
+                                <form action="<?= BASE_URL ?>/admin/accept" method="POST">
                                     <input type="hidden" name="id" value="<?= $ticket['id'] ?>">
-                                    <button type="submit" class="btn btn-info"><i class="fas fa-eye"></i></button> 
+                                    <button type="submit" class="btn btn-info" onclick="return confirm('Accept Ticket');"><i class="fas">Accept</i></button> 
                                 </form>
+                                <?php } else{ ?>
+                                <form action="<?= BASE_URL ?>/admin/unAccept" method="POST">
+                                    <input type="hidden" name="id" value="<?= $ticket['id'] ?>">
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Unaccept Ticket?');"><i class="fas">Unaccept</i></button> 
+                                </form>
+                                <?php }?>
                             </td>
                         </tr>
                         <?php $i++?>

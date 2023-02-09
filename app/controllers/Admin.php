@@ -128,4 +128,22 @@ class Admin extends Controller
         $this->view("templates/footer");    
         }
     }
+
+    public function unAccept(){
+        if($this->model("Ticket_model")->unAccept($_POST) > 0){
+            Redirect::to("admin/ticket");
+        } else{
+            Redirect::to("admin/ticket");
+        }
+    }
+
+    public function accept(){
+        if($this->model("Ticket_model")->accept($_POST) > 0){
+            Redirect::to("admin/ticket");
+        } else{
+            Redirect::to("admin/ticket");
+        }
+    }
+
+
 }

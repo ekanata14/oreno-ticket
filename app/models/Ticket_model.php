@@ -35,4 +35,16 @@ class Ticket_model{
         $this->db->bind("today", date('Y-m-d'));
         return $this->db->resultAll();
     }
+
+    public function unAccept($data){
+        $this->db->query("UPDATE $this->table SET status = '0' WHERE id = :id ");
+        $this->db->bind("id", $data['id']);
+        return $this->db->rowCount();
+    }
+
+    public function accept($data){
+        $this->db->query("UPDATE $this->table SET status = '1' WHERE id = :id ");
+        $this->db->bind("id", $data['id']);
+        return $this->db->rowCount();
+    }
 }

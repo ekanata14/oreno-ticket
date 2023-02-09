@@ -48,7 +48,8 @@ class User_model{
 
 
     public function addPenumpang($data){
-        $this->db->query("INSERT INTO {$this->penumpang} VALUES(NULL, :username, :password, :nama_penumpang, :alamat_penumpang, :tanggal_lahir, :jenis_kelamin, :telefon)");
+        var_dump($data);
+        $this->db->query("INSERT INTO {$this->penumpang} VALUES(NULL, :username, :password, :nama_penumpang, :alamat_penumpang, :tanggal_lahir, :jenis_kelamin, :telefon, :status)");
         $this->db->bind("username", $data['username']);
         $this->db->bind("password", password_hash($data['password'], PASSWORD_DEFAULT));
         $this->db->bind("nama_penumpang", $data['nama_penumpang']);
@@ -56,6 +57,7 @@ class User_model{
         $this->db->bind("tanggal_lahir", $data['tanggal_lahir']);
         $this->db->bind("jenis_kelamin", $data['jenis_kelamin']);
         $this->db->bind("telefon", $data['telefon']);
+        $this->db->bind("status", '0');
         return $this->db->rowCount();
     }
 
